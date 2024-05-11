@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member Form</title>
+    <link rel="stylesheet" href="Css/Style.css">
+    <link rel="icon" href="Css/logowifi.png" sizes="200x200" >
+
+</head>
+<body>
+	$(if chap-id)
+	<form name="sendin" action="$(link-login-only)" method="post">
+		<input type="hidden" name="username" />
+		<input type="hidden" name="password" />
+		<input type="hidden" name="dst" value="$(link-orig)" />
+		<input type="hidden" name="popup" value="true" />
+	</form>	
+	<script type="text/javascript" src="/md5.js"></script>
+	<script type="text/javascript">
+
+		function doLogin() {
+			document.sendin.username.value = document.login.username.value;
+			document.sendin.password.value = hexMD5('$(chap-id)' + document.login.password.value + '$(chap-challenge)');
+			document.sendin.submit();
+			return false;
+		}
+
+	</script>
+	$(endif)
+ <div class="login-div">
+     <div class="logo"></div>
+     <div class="title"><script src="namawifi.js"></script></div>
+	 <center><br/>
+			<a href="$(link-login)"><button class="small-buttons">Voucher</button></a>
+			<a href="https://laksa19.github.io/myqr/"><button class="small-buttons">QR Code</button></a>
+			</center>
+		<form method="post" action="$(link-login-only)" $(if chap-id) onSubmit="return doLogin()" $(endif)>
+			<div class="login-in">
+				<div class="username">
+					<input type="hidden" name="dst" value="$(link-orig)" required />
+					<input type="hidden" name="popup" value="true" />
+					<input type="text" name="username" id="username" value="$(username)" placeholder="Masukkan Username" required />	
+				</div>
+				<div class="password">
+					<input type="password" name="password" id="password" value="" placeholder="Masukkan Password" required />
+				</div>
+					</div>
+				<div class="actions">
+				$(if error)<center><b class="badge-notif" data-badge="&#33;">$(error)</b> </center>$(endif)
+					<button type="submit" class="btn">MASUK</button>
+				</div>
+		</form>
+	<div class="link">
+&copy; <script src="copyright.js"></script>
+	</div>
+
+ </div>   
+</body>
+</html>

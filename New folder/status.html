@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="Css/logowifi.png" sizes="200x200" >
+	$(if refresh-timeout)
+	<meta http-equiv="refresh" content="$(refresh-timeout-secs)">
+	$(endif)
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Status</title>
+    <link rel="stylesheet" href="Css/Style.css">
+	<script language="JavaScript">
+
+		$(if advert-pending == 'yes')
+			var popup = '';
+			function focusAdvert() {
+				if (window.focus) popup.focus();
+				}
+			function openAdvert() {
+				popup = open('$(link-advert)', 'hotspot_advert', '');
+				setTimeout("focusAdvert()", 200);
+				}
+			$(endif)
+			function openLogout() {
+				if (window.name != 'hotspot_status') return true;
+				open('$(link-logout)', 'hotspot_logout', 'toolbar=0,location=0,directories=0,status=0,menubars=0,resizable=1,width=280,height=250');
+				window.close();
+				return false;
+				}
+
+	</script>
+
+</head>
+<body>
+ <div class="sign-div">
+		<div class="title"><script src="namawifi.js"></script></div>
+		<center><p>Agan $(if login-by == 'trial') <b id="user" class="badge-notif" data-badge="&#x2714;">Gratisan</b>$(elif login-by != 'mac') <b id="user" class="badge-notif" data-badge="&#x2714;">$(username)</b>$(endif)<br/>
+		Berhasil masuk ke Jaringan dengan IP $(ip) & MAC $(mac).</center>
+		<div class="sub-title">Status</div>
+<pre>
+Upload 		: $(bytes-out-nice)
+Download		: $(bytes-in-nice)
+Sisa Kuota		: $(if remain-bytes-total)	$(remain-bytes-total-nice) $(else)Loss Unlimited $(endif)
+Terhubung	: $(uptime) $(if session-time-left)
+Sisa Waktu	: $(session-time-left) $(endif)
+Expired		: <iframe id="exp" frameborder="0" scrolling="no" src="about:blank"></iframe>
+</pre>   
+	<form action="$(link-logout)" name="logout" onSubmit="return openLogout()">
+			<input type="hidden" name="erase-cookie" value="on">
+			$(if login-by-mac != 'yes')<button type="submit" class="danger-buttons">LOGOUT</button>$(endif)
+	</form>
+	<div class="link">
+		<a href="harga.html">Harga</a> | <a href="tentang.html">Tentang</a>
+			<br/>&copy; <script src="copyright.js"></script>
+	</div>
+ </div>
+	
+	<!----Server Nikhmon -->
+		<script type="text/javascript">
+			var usr = document.getElementById('user').innerHTML
+			var url = "https://tld.mikhmon.my.id/status/status.php?name="; // http://ip-server-mikhmon/status/status.php?name=
+			var SessionName = "TLD"
+			var getvalid = url+usr+"&session="+SessionName
+			document.getElementById('exp').src = getvalid;
+		</script>
+</body>
+</html>

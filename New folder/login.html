@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kode Voucher</title>
+    <link rel="stylesheet" href="Css/Style.css">
+    <link rel="icon" href="Css/logowifi.png" sizes="200x200" >
+</head>
+<body>
+	$(if chap-id)
+	<form name="sendin" action="$(link-login-only)" method="post">
+		<input type="hidden" name="username" />
+		<input type="hidden" name="password" />
+		<input type="hidden" name="dst" value="$(link-orig)" />
+		<input type="hidden" name="popup" value="true" />
+	</form>	
+	<script type="text/javascript" src="/md5.js"></script>
+	<script type="text/javascript">
+
+		function doLogin() {
+			document.sendin.username.value = document.login.username.value;
+			document.sendin.password.value = hexMD5('$(chap-id)' + document.login.password.value + '$(chap-challenge)');
+			document.sendin.submit();
+			return false;
+		}
+
+	</script>
+	$(endif)
+	<div class="forgot-div">
+		<div class="logo"></div>
+		<div class="title"><script src="namawifi.js"></script></div>
+		<center>
+		$(if trial == 'yes')<br/>
+			<a href="$(link-login-only)?dst=$(link-orig-esc)&amp;username=T-$(mac-esc)"><button class="btn">Coba Gratis</button></a><br/>
+		$(endif)<br/>
+			<a href="member.html"><button class="small-buttons">Member</button></a>
+			<a href="https://laksa19.github.io/myqr/"><button class="small-buttons">QR Code</button></a>
+			</center>
+		<form method="post" action="$(link-login-only)" $(if chap-id) onSubmit="return doLogin()" $(endif)>
+			<div class="login-in">
+				<div class="username">
+					<input type="hidden" name="dst" value="$(link-orig)" required />
+					<input type="hidden" name="popup" value="true" />
+					<input type="text" id="username" name="username" value="$(username)" placeholder="Masukkan Kode Voucher" required />
+					<input type="hidden" id="password" name="password" />												
+				</div>
+			</div>																		
+			<div class="actions">
+			$(if error)<center><b class="badge-notif" data-badge="&#33;">$(error)</b> </center>$(endif)
+			</div>
+			<button type="submit" class="btn">MASUK</button>
+		</form>	
+	<div class="link">
+		<a href="harga.html">Harga</a> | <a href="tentang.html">Tentang</a>
+			<br/>&copy; <script src="copyright.js"></script>
+	</div>
+ </div> 
+
+<!-- Additional Script -->
+	<script type="text/javascript">
+		<!--
+		document.login.username.focus();
+		//-->
+	</script>
+	<script type="text/javascript">
+		var input1 = document.getElementById('username');
+		var input2 = document.getElementById('password');
+		var updateInputs = function () {
+			input2.value = input1.value;
+		}
+		if (input1.addEventListener) {
+			input1.addEventListener('keyup', function () {
+		updateInputs();
+			});
+		}
+		else if (input1.attachEvent) { // support IE
+			input1.attachEvent('onkeyup', function () {
+		updateInputs();
+			});
+		}
+	</script> 
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="Css/logowifi.png" sizes="200x200" >
+	$(if refresh-timeout)
+	<meta http-equiv="refresh" content="$(refresh-timeout-secs)">
+	$(endif)
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logout</title>
+    <link rel="stylesheet" href="Css/Style.css">
+
+</head>
+<body>
+<div class="login-div">
+	<div class="title"><script src="namawifi.js"></script></div>
+		<center><p>Agan <strike>$(username)</strike> Berhasil Keluar dari Jaringan.
+		<br/>$(if error) <b class="badge-notif" data-badge="&#33;">$(error)</b></center>
+		<a href="$(link-login)"><button class="btn">Kembali</button></a> $(endif)</center></p>
+     <div class="login-in">
+         <img src="Css/error.svg" alt="">
+     </div>
+     <a href="$(link-login)"><button class="btn">Masuk Kembali</button></a>
+ </div>
+ 
+    
+
+</body>
+</html>

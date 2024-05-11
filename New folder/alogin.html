@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="refresh" content="2; url=$(link-redirect)">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirect</title>
+    <link rel="stylesheet" href="Css/Style.css">
+    <link rel="icon" href="Css/logowifi.png" sizes="200x200" >
+	<script language="JavaScript">
+		    function startClock() {
+		        $(if popup == 'true')
+		        open('$(link-status)', 'hotspot_status', 'toolbar=0,location=0,directories=0,status=0,menubars=0,resizable=1,width=290,height=200');
+			$(endif)
+			location.href = unescape('$(link-redirect-esc)');
+		    }
+	</script>
+</head>
+<body>
+<div class="homeback">
+    <div class="homebox">
+	<div class="logo"></div>
+		<div class="title"><script src="namawifi.js"></script></div>
+		<p><b id="WelcomeMessage"></b>, Agan <b class="badge-notif" data-badge="&#x2714;">$(username)</b><br/>Berhasil masuk ke Jaringan<br/>dengan IP $(ip) & MAC $(mac).
+								$(if error) <b class="badge-notif" data-badge="&#33;">$(error)</b> <a href="$(link-login)"><button class="btn">Kembali</button></a> $(endif)</p>
+        <a href="$(link-status)"><button class="btn">LANJUTKAN</button></a>
+	<div class="link">
+		<a href="harga.html">Harga</a> | <a href="tentang.html">Tentang</a>
+			<br/>&copy; <script src="copyright.js"></script>
+	</div>
+    </div>
+</div> 
+
+		<!-- Welcome Messages -->
+			<script language="javascript">
+				var Messages = new Date,
+					Jams = Messages.getHours();
+			document.getElementById("WelcomeMessage").innerHTML = 5 <= Jams && Jams <= 11 ? "Selamat Pagi" : 12 <= Jams && Jams <= 15 ? "Selamat Siang" : 15 <= Jams && Jams <= 17 ? "Selamat Sore" : 18 <= Jams && Jams <= 23 ? "Selamat malam" : "Selamat malam menjelang pagi";
+			</script>
+   
+</body>
+</html>

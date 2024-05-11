@@ -1,0 +1,1 @@
+document.write('Nama WiFi') //Ganti dengan Nama Wifi Anda
